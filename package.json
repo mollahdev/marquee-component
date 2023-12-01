@@ -5,53 +5,57 @@
         {
             "name": "Ashraf Mollah",
             "email": "mollah.dev@gmail.com",
-            "url" : "http://mollah.dev/"
+            "url": "http://mollah.dev/"
         },
         {
             "name": "Azmir Uddin Alif",
             "email": "alifazmiruddin@gmail.com",
-            "url" : "https://github.com/Azmir02"
+            "url": "https://github.com/Azmir02"
         }
     ],
     "description": "Enhance your website's visual appeal and user engagement with the Marquee Component",
     "license": "ISC",
     "keywords": [
-      "marquee",
-      "slider",
-      "carousel",
-      "ashraf",
-      "azmir",
-      "component",
-      "web-component",
-      "package"
+        "marquee",
+        "slider",
+        "carousel",
+        "ashraf",
+        "azmir",
+        "component",
+        "web-component",
+        "package"
     ],
     "email": "mollah.dev@gmail.com",
     "main": "./dist/app.umd.cjs",
     "module": "./dist/app.js",
     "types": "./dist/app.d.ts",
     "exports": {
-      ".": {
-        "import": "./dist/app.js",
-        "require": "./dist/app.umd.cjs"
-      }
+        ".": {
+            "import": "./dist/app.js",
+            "require": "./dist/app.umd.cjs"
+        }
     },
     "files": [
-      "dist"
+        "dist"
     ],
     "bugs": {
-      "url": "https://github.com/mollahdev/marquee-component/issues"
+        "url": "https://github.com/mollahdev/marquee-component/issues"
     },
     "homepage": "https://github.com/mollahdev/marquee-component#readme",
     "type": "module",
     "scripts": {
-      "start": "vite",
-      "build": "tsc && vite build",
-      "preview": "vite preview"
+        "start": "vite",
+        "build": "tsc && vite build && npm run build:tailwind",
+        "build:tailwind": "npx tailwindcss -i index.css -o css/index.css",
+        "preview": "vite preview"
     },
     "devDependencies": {
-      "@types/node": "^20.2.3",
-      "typescript": "^5.0.2",
-      "vite": "^4.3.2",
-      "vite-plugin-dts": "^2.3.0"
+        "@types/node": "^20.2.3",
+        "autoprefixer": "^10.4.16",
+        "postcss": "^8.4.31",
+        "tailwindcss": "^3.3.5",
+        "typescript": "^5.0.2",
+        "vite": "^4.3.2",
+        "vite-plugin-dts": "^2.3.0"
     }
 }
