@@ -6,7 +6,7 @@ import Utility from "./utility";
  */ 
 customElements.get( MARQUEE_COMPONENT ) || 
 customElements.define( MARQUEE_COMPONENT, class extends HTMLElement {
-    speed: number = 5
+    speed: number = 2; // speed per frame
     mode: MODETYPE = MODE.HORIZONTAL;
     direction: DIRECTIONTYPE = DIRECTION.LTR;
     wrapper = document.createElement('div');
@@ -14,9 +14,11 @@ customElements.define( MARQUEE_COMPONENT, class extends HTMLElement {
     wrapperSize = 0;
     moveTo = 0;
     point = 0;
+    frameInterval = 1000 / 60;
+    previousTime = performance.now();
 
     connectedCallback() {
-        this.speed = Number(this.getAttribute('speed')) || 5;
+        this.speed = Number(this.getAttribute('speed')) || 2;
         this.mode = ( this.getAttribute('mode') as MODETYPE ) || MODE.HORIZONTAL;
         this.direction = ( this.getAttribute('dir') as DIRECTIONTYPE ) || DIRECTION.LTR;
 
@@ -58,7 +60,7 @@ customElements.define( MARQUEE_COMPONENT, class extends HTMLElement {
             this.#moveWrapper( this.moveTo );
         }
 
-        this.#animate();
+        requestAnimationFrame( this.#animate.bind(this) )
     }
 
     #moveWrapper( point: number ) {
@@ -86,8 +88,12 @@ customElements.define( MARQUEE_COMPONENT, class extends HTMLElement {
         return this.point >= this.moveTo
     }
 
-    #animate() {
-        this.point = this.point + Number(this.speed);
+    #animate( timeStamp: number ) {
+        const deltaTime = timeStamp - this.previousTime;
+        const deltaTimeMultiplier = deltaTime / this.frameInterval;
+        const increaseBy = this.speed * deltaTimeMultiplier;
+        this.previousTime = timeStamp;
+        this.point = this.point + increaseBy;
 
         if( this.mode === MODE.VERTICAL && this.direction === DIRECTION.RTL ) {
             this.#moveWrapper( this.moveTo +  this.point );
@@ -106,7 +112,8 @@ customElements.define( MARQUEE_COMPONENT, class extends HTMLElement {
                 this.wrapper.appendChild( el );
             } )
 
-            this.point = visibleSize - this.scopeSize;
+            const resetSize = visibleSize - this.scopeSize;
+            this.point = resetSize > 0 ? resetSize : 0 ;
 
             if( this.mode === MODE.VERTICAL && this.direction === DIRECTION.RTL ) {
                 this.#moveWrapper( this.moveTo + this.point );
@@ -114,10 +121,9 @@ customElements.define( MARQUEE_COMPONENT, class extends HTMLElement {
                 this.#moveWrapper( this.point );
             }
 
-            requestAnimationFrame( () => this.#animate() );
-        } else {
-            requestAnimationFrame( () => this.#animate() );
         }
+
+        requestAnimationFrame( this.#animate.bind(this) );
     }
 } );
 

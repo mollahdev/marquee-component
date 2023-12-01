@@ -44,7 +44,7 @@
     "homepage": "https://github.com/mollahdev/marquee-component#readme",
     "type": "module",
     "scripts": {
-      "dev": "vite",
+      "start": "vite",
       "build": "tsc && vite build",
       "preview": "vite preview"
     },
