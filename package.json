@@ -1,16 +1,11 @@
 {
     "name": "marquee-component",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "authors": [
         {
             "name": "Ashraf Mollah",
             "email": "mollah.dev@gmail.com",
             "url": "http://mollah.dev/"
-        },
-        {
-            "name": "Azmir Uddin Alif",
-            "email": "alifazmiruddin@gmail.com",
-            "url": "https://github.com/Azmir02"
         }
     ],
     "description": "Enhance your website's visual appeal and user engagement with the Marquee Component",
@@ -20,7 +15,6 @@
         "slider",
         "carousel",
         "ashraf",
-        "azmir",
         "component",
         "web-component",
         "package"
