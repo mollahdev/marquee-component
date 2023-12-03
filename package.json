@@ -1,13 +1,7 @@
 {
-    "name": "marquee-component",
+    "name": "@mollahdev/marquee-component",
     "version": "0.0.1",
-    "authors": [
-        {
-            "name": "Ashraf Mollah",
-            "email": "mollah.dev@gmail.com",
-            "url": "http://mollah.dev/"
-        }
-    ],
+    "authors": "Ashraf Mollah <mollah.dev@gmail.com> (https://mollah.dev)",
     "description": "Enhance your website's visual appeal and user engagement with the Marquee Component",
     "license": "ISC",
     "keywords": [
